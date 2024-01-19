@@ -1,0 +1,15 @@
+pycaret[full]
+
+jupyterlab
+ipywidgets
+
+# utilities
+pandas
+numpy
+polars
+scikit-learn
+
+# formatter
+black
+flake8
+isort
