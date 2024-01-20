@@ -1,4 +1,4 @@
-FROM  nvcr.io/nvidia/cuda:12.3.1-runtime-ubuntu22.04
+FROM  nvcr.io/nvidia/cuda:12.3.1-devel-ubuntu22.04
 
 ENV TZ=Asia/Tokyo
 ENV DEBIAN_FRONTEND=noninteractive=value
@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive=value
 # Install dependencies
 RUN apt-get update 
 RUN apt-get install -y \
-    # wget \
+    wget \
     git \
     # curl \
     # unzip \
@@ -14,7 +14,19 @@ RUN apt-get install -y \
     sudo \
     python3-tk \
     python3 \
-    python3-pip
+    # lightgbm GPU
+    cmake \
+    build-essential \
+    libboost-dev \
+    libboost-system-dev \
+    libboost-filesystem-dev 
+
+RUN wget -O - https://bootstrap.pypa.io/get-pip.py | sudo python3
+RUN pip install lightgbm \
+    --no-binary lightgbm \
+    --no-cache lightgbm \
+    --config-settings=cmake.define.USE_CUDA=ON \
+    --config-settings=cmake.define.USE_GPU=ON 
 
 COPY ./requirements.txt /tmp/requirements.txt
 

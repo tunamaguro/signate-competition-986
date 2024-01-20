@@ -1,3 +1,6 @@
+# https://github.com/yaml/pyyaml/issues/724
+PyYAML==5.3.1
+cuml
 pycaret[full]
 
 jupyterlab
