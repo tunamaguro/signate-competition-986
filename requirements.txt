@@ -3,6 +3,9 @@ PyYAML==5.3.1
 cuml
 pycaret[full]
 
+setuptools==57.0.0
+xfeat
+
 jupyterlab
 ipywidgets
 
